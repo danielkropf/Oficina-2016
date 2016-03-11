@@ -6,6 +6,7 @@ public class Movement2 : MonoBehaviour {
     public GameObject placedOn;
 	private Color32 color;
 	public bool started;
+	public int player;
 
 	// Use this for initialization
 	void Start () {
@@ -62,6 +63,8 @@ public class Movement2 : MonoBehaviour {
 				placedOn.GetComponent<Movment>().immediatelyUp.GetComponent<SpriteRenderer>().color = new Color32(210, 50, 50, 255);
 				placedOn.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().incoming = this.gameObject;
 			}
+			Main.armyClicked = this.gameObject;
+			Main.clickedAnArmy = true;
 		}
 		else
 		{
@@ -106,12 +109,17 @@ public class Movement2 : MonoBehaviour {
 				placedOn.GetComponent<Movment>().immediatelyUp.GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 255);
 				placedOn.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().incoming = null;
 			}
+			Main.armyClicked = null;
+			Main.clickedAnArmy = false;
 		}
 	}
 
     void OnMouseUp()
 	{
-		ChangeColor(started);
-		started = !started;
+		if (Main.playerTurn == player && (!Main.clickedAnArmy || Main.armyClicked == this.gameObject))
+		{
+			ChangeColor(started);
+			started = !started;
+		}
 	}
 }
