@@ -29,6 +29,7 @@ public class Movment : MonoBehaviour {
 			temp.GetComponent<Movement2>().placedOn.GetComponent<Movment>().onMe = null;
 			temp.GetComponent<Movement2>().placedOn = this.gameObject;
 			temp.GetComponent<Movement2>().started = false;
+			temp.GetComponent<Movement2>().action = false;
 			onMe = incoming;
 			incoming = null;
 			temp = null;

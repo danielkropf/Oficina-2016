@@ -6,6 +6,7 @@ public class Main : MonoBehaviour {
 	public static bool clickedAnArmy;
 	public static GameObject armyClicked;
 	public static int playerTurn = 1;
+	public GameObject[] gos;
 
 	// Use this for initialization
 	void Start () {
@@ -14,13 +15,20 @@ public class Main : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		gos = GameObject.FindGameObjectsWithTag("Unit");
+		Debug.Log(clickedAnArmy + ", " + armyClicked + ", " + playerTurn);
 	}
 
 	public void endTurn() {
-		if (playerTurn == 1)
-			playerTurn = 2;
-		if (playerTurn == 2)
-			playerTurn = 2;
+		if (playerTurn == 1) playerTurn = 2;
+		else if (playerTurn == 2) playerTurn = 1;
+
+		for (int i = 0; i < gos.Length; i++)
+		{
+			gos[i].GetComponent<Movement2>().action = true;
+			gos[i].GetComponent<Movement2>().ChangeColor(true);
+		}
+
+
 	}
 }
