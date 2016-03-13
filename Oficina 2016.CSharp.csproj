@@ -66,6 +66,7 @@
     <Compile Include="Assets\Resources\Scripts\Main.cs" />
     <Compile Include="Assets\Resources\Scripts\Movement2.cs" />
     <Compile Include="Assets\Resources\Scripts\Movment.cs" />
+    <Compile Include="Assets\Resources\Scripts\NormalUnit.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

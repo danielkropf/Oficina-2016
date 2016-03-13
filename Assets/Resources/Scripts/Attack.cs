@@ -19,9 +19,7 @@ public class Attack : MonoBehaviour {
 	void OnMouseUp() {
 		if (attacking != null)
 		{
-			Debug.LogError(attacking.GetComponent<Movement2>().life + " - " + unitAttached.GetComponent<Movement2>().damage);
 			attacking.GetComponent<Movement2>().life -= unitAttached.GetComponent<Movement2>().damage;
-			Debug.LogWarning(unitAttached.GetComponent<Movement2>().life + " - " + attacking.GetComponent<Movement2>().damage);
 			unitAttached.GetComponent<Movement2>().life -= attacking.GetComponent<Movement2>().damage;
 
 			GameObject temp = attacking;

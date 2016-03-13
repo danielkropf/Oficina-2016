@@ -6,7 +6,8 @@ public class Main : MonoBehaviour {
 	public static bool clickedAnArmy;
 	public static GameObject armyClicked;
 	public static int playerTurn = 1;
-	public GameObject[] gos;
+	public static GameObject[] gos;
+	public GameObject[] buttonsToInvokeUnits;
 
 	// Use this for initialization
 	void Start () {
@@ -16,7 +17,7 @@ public class Main : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		gos = GameObject.FindGameObjectsWithTag("Unit");
-		Debug.Log(clickedAnArmy + ", " + armyClicked + ", " + playerTurn);
+		Debug.Log("gos: " + gos);
 	}
 
 	public void endTurn() {
@@ -28,7 +29,6 @@ public class Main : MonoBehaviour {
 			gos[i].GetComponent<Movement2>().action = true;
 			gos[i].GetComponent<Movement2>().ChangeColor(true);
 		}
-
-
+		for (int i = 0; i < buttonsToInvokeUnits.Length; i++) buttonsToInvokeUnits[i].GetComponent<NormalUnit>().invokedThisTurn = false;
 	}
 }

@@ -9,9 +9,13 @@ public class Movment : MonoBehaviour {
     public GameObject immediatelyDown;
 	public GameObject onMe;
 	public GameObject incoming;
+	public GameObject incomingNewUnit;
+	private GameObject instantiedUnit;
+	public GameObject button;
+	public int playerNewUnitAttached;
 
-    // Use this for initialization
-    void Start () {
+	// Use this for initialization
+	void Start () {
 	
 	}
 	
@@ -33,6 +37,15 @@ public class Movment : MonoBehaviour {
 			onMe = incoming;
 			incoming = null;
 			temp = null;
+		}
+		if(incomingNewUnit != null)
+		{
+			instantiedUnit = (Instantiate(incomingNewUnit, this.gameObject.transform.position, Quaternion.identity)) as GameObject;
+			instantiedUnit.GetComponent<Movement2>().placedOn = this.gameObject;
+			instantiedUnit.GetComponent<Movement2>().player = playerNewUnitAttached;
+			instantiedUnit.GetComponent<Movement2>().action = false;
+			button.GetComponent<NormalUnit>().ChangeColor(true);
+			button.GetComponent<NormalUnit>().invokedThisTurn = true;
 		}
 	}
 }
