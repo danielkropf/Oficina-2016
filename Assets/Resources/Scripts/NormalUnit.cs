@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class NormalUnit : MonoBehaviour {
 
@@ -9,6 +10,8 @@ public class NormalUnit : MonoBehaviour {
 	public GameObject prefab;
 	private bool alreadyClicked;
 	public bool invokedThisTurn;
+	public GameObject vida;
+	public GameObject dano;
 
 
 	// Use this for initialization
@@ -281,5 +284,16 @@ public class NormalUnit : MonoBehaviour {
 
 			ChangeColor(alreadyClicked);
 		}
+	}
+
+	void ShowLife()
+	{
+		vida.GetComponent<Text>().text = "Vida: " + prefab.GetComponent<Movement2>().life;
+		dano.GetComponent<Text>().text = "Dano: " + prefab.GetComponent<Movement2>().damage;
+	}
+	void HideLife()
+	{
+		vida.GetComponent<Text>().text = "Vida: ";
+		dano.GetComponent<Text>().text = "Dano: ";
 	}
 }

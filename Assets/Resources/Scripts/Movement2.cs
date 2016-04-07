@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Movement2 : MonoBehaviour {
 
@@ -11,7 +12,10 @@ public class Movement2 : MonoBehaviour {
 	public int life;
 	public int damage;
 	public GameObject attackMarker;
+	public GameObject vida;
+	public GameObject dano;
 	public bool king;
+	Text txt;
 
 	// Use this for initialization
 	void Start () {
@@ -308,5 +312,16 @@ public class Movement2 : MonoBehaviour {
 			ChangeColor(started);
 			started = !started;
 		}
+	}
+
+	void OnMouseOver()
+	{
+		vida.GetComponent<Text>().text = "Vida: " + life;
+		dano.GetComponent<Text>().text = "Dano: " + damage;
+	}
+	void OnMouseExit()
+	{
+		vida.GetComponent<Text>().text = "Vida: ";
+		dano.GetComponent<Text>().text = "Dano: ";
 	}
 }

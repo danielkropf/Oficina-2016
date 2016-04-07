@@ -13,6 +13,8 @@ public class Movment : MonoBehaviour {
 	private GameObject instantiedUnit;
 	public GameObject button;
 	public int playerNewUnitAttached;
+	public GameObject vida;
+	public GameObject dmg;
 
 	// Use this for initialization
 	void Start () {
@@ -44,6 +46,8 @@ public class Movment : MonoBehaviour {
 			instantiedUnit.GetComponent<Movement2>().placedOn = this.gameObject;
 			instantiedUnit.GetComponent<Movement2>().player = playerNewUnitAttached;
 			instantiedUnit.GetComponent<Movement2>().action = false;
+			instantiedUnit.GetComponent<Movement2>().vida = vida;
+			instantiedUnit.GetComponent<Movement2>().dano = dmg;
 			button.GetComponent<NormalUnit>().ChangeColor(true);
 			button.GetComponent<NormalUnit>().invokedThisTurn = true;
 		}
