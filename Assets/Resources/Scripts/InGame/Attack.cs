@@ -1,0 +1,37 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class Attack : MonoBehaviour {
+
+	public GameObject attacking;
+	public GameObject unitAttached;
+
+	// Use this for initialization
+	void Start () {
+	
+	}
+	
+	// Update is called once per frame
+	void Update () {
+	
+	}
+
+	void OnMouseUp() {
+		if (attacking != null)
+		{
+			attacking.GetComponent<Movement2>().life -= unitAttached.GetComponent<Movement2>().damage;
+			if (attacking.GetComponent<Movement2>().life <= 0)
+				if (Main.playerTurn == 1) Main.gold[1] += attacking.GetComponent<Movement2>().goldToEarn;
+				else Main.gold[0] += attacking.GetComponent<Movement2>().goldToEarn;
+			unitAttached.GetComponent<Movement2>().life -= attacking.GetComponent<Movement2>().damage;
+			if (unitAttached.GetComponent<Movement2>().life <= 0) Main.gold[Main.playerTurn - 1] += unitAttached.GetComponent<Movement2>().goldToEarn;
+
+			GameObject temp = attacking;
+			temp.GetComponent<Movement2>().ChangeColor(true);
+			temp.GetComponent<Movement2>().started = false;
+			temp.GetComponent<Movement2>().action = false;
+
+			temp = null;
+		}
+	}
+}

@@ -62,11 +62,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Resources\Scripts\Attack.cs" />
-    <Compile Include="Assets\Resources\Scripts\Main.cs" />
-    <Compile Include="Assets\Resources\Scripts\Movement2.cs" />
-    <Compile Include="Assets\Resources\Scripts\Movment.cs" />
-    <Compile Include="Assets\Resources\Scripts\NormalUnit.cs" />
+    <Compile Include="Assets\Resources\Scripts\InGame\Attack.cs" />
+    <Compile Include="Assets\Resources\Scripts\InGame\Main.cs" />
+    <Compile Include="Assets\Resources\Scripts\InGame\Movement2.cs" />
+    <Compile Include="Assets\Resources\Scripts\InGame\Movment.cs" />
+    <Compile Include="Assets\Resources\Scripts\InGame\NormalUnit.cs" />
+    <Compile Include="Assets\Resources\Scripts\Menu\MainMenu.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

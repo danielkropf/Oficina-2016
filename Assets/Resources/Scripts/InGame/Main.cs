@@ -1,0 +1,82 @@
+﻿using UnityEngine;
+using System.Collections;
+using UnityEngine.UI;
+
+public class Main : MonoBehaviour {
+
+	public static bool clickedAnArmy;
+	public static GameObject armyClicked;
+	public static int playerTurn = 1;
+	public static GameObject[] gos;
+	public GameObject[] buttonsToInvokeUnits = new GameObject[4];
+	public GameObject turn;
+	public static int[] gold = new int[2] {20,20};
+	public GameObject goldtxt;
+	private Text txt;
+	public GameObject[] prefabs = new GameObject[10];
+	public int[] numsUsed = new int[4];
+
+	// Use this for initialization
+	void Start () {
+
+		for(int i = 0; i < 4; i++)
+		{
+			int t = Random.Range(0, 9);
+			int n = 0;
+
+			while(n < 4)
+			{
+				if(numsUsed[n] == t)
+				{
+					t = Random.Range(0,9);
+					n = -1;
+				}
+				n++;
+			}
+			numsUsed[i] = t;
+		}
+
+		buttonsToInvokeUnits[0].GetComponent<Image>().sprite = prefabs[numsUsed[0]].GetComponent<Image>().sprite;
+		buttonsToInvokeUnits[0].GetComponent<NormalUnit>().prefab = prefabs[numsUsed[0]].GetComponent<NormalUnit>().prefab;
+		buttonsToInvokeUnits[0].GetComponent<NormalUnit>().gold = prefabs[numsUsed[0]].GetComponent<NormalUnit>().gold;
+
+		buttonsToInvokeUnits[1].GetComponent<Image>().sprite = prefabs[numsUsed[1]].GetComponent<Image>().sprite;
+		buttonsToInvokeUnits[1].GetComponent<NormalUnit>().prefab = prefabs[numsUsed[1]].GetComponent<NormalUnit>().prefab;
+		buttonsToInvokeUnits[1].GetComponent<NormalUnit>().gold = prefabs[numsUsed[1]].GetComponent<NormalUnit>().gold;
+
+		buttonsToInvokeUnits[2].GetComponent<Image>().sprite = prefabs[numsUsed[2]].GetComponent<Image>().sprite;
+		buttonsToInvokeUnits[2].GetComponent<NormalUnit>().prefab = prefabs[numsUsed[2]].GetComponent<NormalUnit>().prefab;
+		buttonsToInvokeUnits[2].GetComponent<NormalUnit>().gold = prefabs[numsUsed[2]].GetComponent<NormalUnit>().gold;
+
+		buttonsToInvokeUnits[3].GetComponent<Image>().sprite = prefabs[numsUsed[3]].GetComponent<Image>().sprite;
+		buttonsToInvokeUnits[3].GetComponent<NormalUnit>().prefab = prefabs[numsUsed[3]].GetComponent<NormalUnit>().prefab;
+		buttonsToInvokeUnits[3].GetComponent<NormalUnit>().gold = prefabs[numsUsed[3]].GetComponent<NormalUnit>().gold;
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		gos = GameObject.FindGameObjectsWithTag("Unit");
+		goldtxt.GetComponent<Text>().text = "Gold: " + gold[playerTurn - 1];
+	}
+
+	public void endTurn() {
+		if (playerTurn == 1)
+		{
+			playerTurn = 2;
+			gold[1] += 3;
+		}
+		else if (playerTurn == 2)
+		{
+			playerTurn = 1;
+			gold[0] += 3;
+		}
+
+		for (int i = 0; i < gos.Length; i++)
+		{
+			gos[i].GetComponent<Movement2>().action = true;
+			gos[i].GetComponent<Movement2>().ChangeColor(true);
+		}
+		for (int i = 0; i < buttonsToInvokeUnits.Length; i++) buttonsToInvokeUnits[i].GetComponent<NormalUnit>().invokedThisTurn = false;
+		turn.GetComponent<Text>().text = "Turno: Player " + playerTurn;
+	}
+}
