@@ -17,13 +17,28 @@ public class Movement2 : MonoBehaviour {
 	public bool king;
 	public int gold;
 	public int goldToEarn;
+	public GameObject[] btns;
 	Text txt;
 
 	// Use this for initialization
+	
 	void Start () {
 
 	}
-	
+
+	public void Abilities(GameObject go)
+	{
+		switch (this.name)
+		{
+			case "Goat(Clone)":
+				go.GetComponent<Movement2>().damage--;
+				break;
+			default:
+				Debug.Log(this.name);
+				break;
+		}
+	}
+
 	// Update is called once per frame
 	void Update () {
 		placedOn.GetComponent<Movment>().onMe = this.gameObject;
@@ -314,6 +329,7 @@ public class Movement2 : MonoBehaviour {
 		{
 			ChangeColor(started);
 			started = !started;
+			NormalUnit.cClick = !started;
 		}
 	}
 

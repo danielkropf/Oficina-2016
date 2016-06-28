@@ -3,8 +3,30 @@ using System.Collections;
 
 public class MainMenu : MonoBehaviour {
 
-	public void Play()
+	public void ClickButton(string go)
 	{
-		Application.LoadLevel("Jogo");
+		switch(go)
+		{
+			case "Jogar":
+				Application.LoadLevel("Jogo");
+				break;
+
+			case "Creditos":
+				Application.LoadLevel("Creditos");
+				break;
+
+			case "Opcoes":
+				Application.LoadLevel("Opções");
+				break;
+
+			case "Sair":
+				Application.Quit();
+				break;
+
+			case "Menu":
+				Application.LoadLevel("Menu");
+				break;
+		}
+		Debug.Log(go);
 	}
 }

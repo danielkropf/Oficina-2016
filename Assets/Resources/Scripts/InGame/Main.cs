@@ -8,6 +8,7 @@ public class Main : MonoBehaviour {
 	public static GameObject armyClicked;
 	public static int playerTurn = 1;
 	public static GameObject[] gos;
+	public static GameObject[] gos2;
 	public GameObject[] buttonsToInvokeUnits = new GameObject[4];
 	public GameObject turn;
 	public static int[] gold = new int[2] {20,20};
@@ -56,6 +57,7 @@ public class Main : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		gos = GameObject.FindGameObjectsWithTag("Unit");
+		gos2 = GameObject.FindGameObjectsWithTag("Grid");
 		goldtxt.GetComponent<Text>().text = "Gold: " + gold[playerTurn - 1];
 	}
 
@@ -75,7 +77,14 @@ public class Main : MonoBehaviour {
 		{
 			gos[i].GetComponent<Movement2>().action = true;
 			gos[i].GetComponent<Movement2>().ChangeColor(true);
+			gos[i].GetComponent<Movement2>().started = false;
 		}
+		for (int i = 0; i < gos2.Length; i++)
+		{
+			gos2[i].GetComponent<Movment>().incomingNewUnit = null;
+		}
+		NormalUnit.cClick = true;
+
 		for (int i = 0; i < buttonsToInvokeUnits.Length; i++) buttonsToInvokeUnits[i].GetComponent<NormalUnit>().invokedThisTurn = false;
 		turn.GetComponent<Text>().text = "Turno: Player " + playerTurn;
 	}

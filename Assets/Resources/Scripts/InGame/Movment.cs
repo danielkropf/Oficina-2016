@@ -29,6 +29,7 @@ public class Movment : MonoBehaviour {
 	void OnMouseUp() {
 		if (incoming != null)
 		{
+			NormalUnit.cClick = true;
 			GameObject temp = incoming;
 			temp.GetComponent<Movement2>().ChangeColor(true);
 			temp.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, temp.transform.position.z);

@@ -13,6 +13,7 @@ public class NormalUnit : MonoBehaviour {
 	public GameObject vida;
 	public GameObject dano;
 	public int gold;
+	public static bool cClick = true;
 
 
 	// Use this for initialization
@@ -22,15 +23,14 @@ public class NormalUnit : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (gold > Main.gold[Main.playerTurn - 1])
-		{
-			this.gameObject.GetComponent<Button>().interactable = false;
-		}
-		else
-		{
-			this.gameObject.GetComponent<Button>().interactable = true;
-		}
-		Debug.LogWarning("gold carta: " + gold + " / gold player: " + Main.gold[Main.playerTurn - 1]);
+			if (gold > Main.gold[Main.playerTurn - 1] || !cClick)
+			{
+				this.gameObject.GetComponent<Button>().interactable = false;
+			}
+			else
+			{
+				this.gameObject.GetComponent<Button>().interactable = true;
+			}
 	}
 
 	public void ChangeColor(bool b)

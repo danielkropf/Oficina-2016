@@ -24,6 +24,7 @@ public class Attack : MonoBehaviour {
 				if (Main.playerTurn == 1) Main.gold[1] += attacking.GetComponent<Movement2>().goldToEarn;
 				else Main.gold[0] += attacking.GetComponent<Movement2>().goldToEarn;
 			unitAttached.GetComponent<Movement2>().life -= attacking.GetComponent<Movement2>().damage;
+			attacking.GetComponent<Movement2>().Abilities(unitAttached);
 			if (unitAttached.GetComponent<Movement2>().life <= 0) Main.gold[Main.playerTurn - 1] += unitAttached.GetComponent<Movement2>().goldToEarn;
 
 			GameObject temp = attacking;
