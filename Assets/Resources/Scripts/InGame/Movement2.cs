@@ -19,8 +19,6 @@ public class Movement2 : MonoBehaviour {
 	public int goldToEarn;
 	public GameObject[] btns;
 	Text txt;
-
-	// Use this for initialization
 	
 	void Start () {
 
@@ -39,7 +37,6 @@ public class Movement2 : MonoBehaviour {
 		}
 	}
 
-	// Update is called once per frame
 	void Update () {
 		placedOn.GetComponent<Movment>().onMe = this.gameObject;
 		attackMarker.GetComponent<Attack>().unitAttached = this.gameObject;

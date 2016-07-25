@@ -8,7 +8,8 @@ public class NormalUnit : MonoBehaviour {
 	public GameObject[] kings = new GameObject[2];
 	private GameObject myKing;
 	public GameObject prefab;
-	private bool alreadyClicked;
+	public GameObject[] prefabs;
+	private static bool alreadyClicked;
 	public bool invokedThisTurn;
 	public GameObject vida;
 	public GameObject dano;
@@ -16,21 +17,23 @@ public class NormalUnit : MonoBehaviour {
 	public static bool cClick = true;
 
 
-	// Use this for initialization
+
 	void Start () {
 		
 	}
 	
-	// Update is called once per frame
-	void Update () {
-			if (gold > Main.gold[Main.playerTurn - 1] || !cClick)
-			{
-				this.gameObject.GetComponent<Button>().interactable = false;
-			}
-			else
-			{
-				this.gameObject.GetComponent<Button>().interactable = true;
-			}
+	void Update ()
+	{
+		if (gold > Main.gold[Main.playerTurn - 1] || !cClick)
+		{
+			this.gameObject.GetComponent<Button>().interactable = false;
+		}
+		else
+		{
+			this.gameObject.GetComponent<Button>().interactable = true;
+		}
+
+		prefab = prefabs[Main.playerTurn - 1];
 	}
 
 	public void ChangeColor(bool b)
@@ -292,9 +295,11 @@ public class NormalUnit : MonoBehaviour {
 			else myKing = kings[1];
 
 			ChangeColor(alreadyClicked);
+			alreadyClicked = !alreadyClicked;
 		}
 	}
 
+	#region Inutil (Por enquanto)
 	void ShowLife()
 	{
 		vida.GetComponent<Text>().text = "Vida: " + prefab.GetComponent<Movement2>().life;
@@ -305,4 +310,5 @@ public class NormalUnit : MonoBehaviour {
 		vida.GetComponent<Text>().text = "Vida: ";
 		dano.GetComponent<Text>().text = "Dano: ";
 	}
+	#endregion
 }

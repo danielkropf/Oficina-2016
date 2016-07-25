@@ -15,9 +15,9 @@ public class Main : MonoBehaviour {
 	public GameObject goldtxt;
 	private Text txt;
 	public GameObject[] prefabs = new GameObject[10];
+	public GameObject[] prefabs_p2 = new GameObject[10];
 	public int[] numsUsed = new int[4];
 
-	// Use this for initialization
 	void Start () {
 
 		for(int i = 0; i < 4; i++)
@@ -36,8 +36,14 @@ public class Main : MonoBehaviour {
 			}
 			numsUsed[i] = t;
 		}
-
-		buttonsToInvokeUnits[0].GetComponent<Image>().sprite = prefabs[numsUsed[0]].GetComponent<Image>().sprite;
+		#region FAZ UM FOR PORRA
+		for(int i = 0; i <= 3; i++)
+		{
+			//buttonsToInvokeUnits[i].GetComponent<Image>().sprite = prefabs[numsUsed[i]].GetComponent<Image>().sprite;
+			buttonsToInvokeUnits[i].GetComponent<NormalUnit>().prefabs = new GameObject[2] { prefabs[numsUsed[i]].GetComponent<NormalUnit>().prefab, prefabs_p2[numsUsed[i]].GetComponent<NormalUnit>().prefab };
+			//buttonsToInvokeUnits[i].GetComponent<NormalUnit>().gold = prefabs[numsUsed[i]].GetComponent<NormalUnit>().gold;
+		}
+		/*buttonsToInvokeUnits[0].GetComponent<Image>().sprite = prefabs[numsUsed[0]].GetComponent<Image>().sprite;
 		buttonsToInvokeUnits[0].GetComponent<NormalUnit>().prefab = prefabs[numsUsed[0]].GetComponent<NormalUnit>().prefab;
 		buttonsToInvokeUnits[0].GetComponent<NormalUnit>().gold = prefabs[numsUsed[0]].GetComponent<NormalUnit>().gold;
 
@@ -51,10 +57,10 @@ public class Main : MonoBehaviour {
 
 		buttonsToInvokeUnits[3].GetComponent<Image>().sprite = prefabs[numsUsed[3]].GetComponent<Image>().sprite;
 		buttonsToInvokeUnits[3].GetComponent<NormalUnit>().prefab = prefabs[numsUsed[3]].GetComponent<NormalUnit>().prefab;
-		buttonsToInvokeUnits[3].GetComponent<NormalUnit>().gold = prefabs[numsUsed[3]].GetComponent<NormalUnit>().gold;
+		buttonsToInvokeUnits[3].GetComponent<NormalUnit>().gold = prefabs[numsUsed[3]].GetComponent<NormalUnit>().gold;*/
+		#endregion
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 		gos = GameObject.FindGameObjectsWithTag("Unit");
 		gos2 = GameObject.FindGameObjectsWithTag("Grid");

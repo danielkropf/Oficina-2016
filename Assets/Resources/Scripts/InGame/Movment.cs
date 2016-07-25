@@ -16,12 +16,10 @@ public class Movment : MonoBehaviour {
 	public GameObject vida;
 	public GameObject dmg;
 
-	// Use this for initialization
 	void Start () {
 	
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 	
 	}

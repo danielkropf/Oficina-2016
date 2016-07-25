@@ -6,12 +6,10 @@ public class Attack : MonoBehaviour {
 	public GameObject attacking;
 	public GameObject unitAttached;
 
-	// Use this for initialization
 	void Start () {
 	
 	}
 	
-	// Update is called once per frame
 	void Update () {
 	
 	}
