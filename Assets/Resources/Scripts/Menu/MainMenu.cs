@@ -8,7 +8,7 @@ public class MainMenu : MonoBehaviour {
 		switch(go)
 		{
 			case "Jogar":
-				Application.LoadLevel("Jogo");
+				Application.LoadLevel("SelecaoReinos");
 				break;
 
 			case "Creditos":

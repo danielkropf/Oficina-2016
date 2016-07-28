@@ -67,6 +67,7 @@
     <Compile Include="Assets\Resources\Scripts\InGame\Movement2.cs" />
     <Compile Include="Assets\Resources\Scripts\InGame\Movment.cs" />
     <Compile Include="Assets\Resources\Scripts\InGame\NormalUnit.cs" />
+    <Compile Include="Assets\Resources\Scripts\Menu\ChooseMenu.cs" />
     <Compile Include="Assets\Resources\Scripts\Menu\MainMenu.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />

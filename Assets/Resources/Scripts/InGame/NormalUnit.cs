@@ -9,7 +9,7 @@ public class NormalUnit : MonoBehaviour {
 	private GameObject myKing;
 	public GameObject prefab;
 	public GameObject[] prefabs;
-	private static bool alreadyClicked;
+	public static bool alreadyClicked;
 	public bool invokedThisTurn;
 	public GameObject vida;
 	public GameObject dano;
@@ -33,7 +33,7 @@ public class NormalUnit : MonoBehaviour {
 			this.gameObject.GetComponent<Button>().interactable = true;
 		}
 
-		prefab = prefabs[Main.playerTurn - 1];
+		//prefab = prefabs[Main.playerTurn - 1];
 	}
 
 	public void ChangeColor(bool b)
@@ -41,6 +41,7 @@ public class NormalUnit : MonoBehaviour {
 
 		if (!b)
 		{
+			Debug.Log("!b");
 			#region Started = true
 			Debug.Log("clickou");
 
@@ -155,6 +156,7 @@ public class NormalUnit : MonoBehaviour {
 		}
 		else
 		{
+			Debug.Log("b");
 			#region Started = False
 
 			#region Right

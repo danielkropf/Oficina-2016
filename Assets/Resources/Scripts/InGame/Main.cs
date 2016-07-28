@@ -16,6 +16,7 @@ public class Main : MonoBehaviour {
 	private Text txt;
 	public GameObject[] prefabs = new GameObject[10];
 	public GameObject[] prefabs_p2 = new GameObject[10];
+	public GameObject[] prefabs_p3 = new GameObject[10];
 	public int[] numsUsed = new int[4];
 
 	void Start () {
@@ -36,35 +37,46 @@ public class Main : MonoBehaviour {
 			}
 			numsUsed[i] = t;
 		}
-		#region FAZ UM FOR PORRA
-		for(int i = 0; i <= 3; i++)
-		{
-			//buttonsToInvokeUnits[i].GetComponent<Image>().sprite = prefabs[numsUsed[i]].GetComponent<Image>().sprite;
-			buttonsToInvokeUnits[i].GetComponent<NormalUnit>().prefabs = new GameObject[2] { prefabs[numsUsed[i]].GetComponent<NormalUnit>().prefab, prefabs_p2[numsUsed[i]].GetComponent<NormalUnit>().prefab };
-			//buttonsToInvokeUnits[i].GetComponent<NormalUnit>().gold = prefabs[numsUsed[i]].GetComponent<NormalUnit>().gold;
-		}
-		/*buttonsToInvokeUnits[0].GetComponent<Image>().sprite = prefabs[numsUsed[0]].GetComponent<Image>().sprite;
-		buttonsToInvokeUnits[0].GetComponent<NormalUnit>().prefab = prefabs[numsUsed[0]].GetComponent<NormalUnit>().prefab;
-		buttonsToInvokeUnits[0].GetComponent<NormalUnit>().gold = prefabs[numsUsed[0]].GetComponent<NormalUnit>().gold;
 
-		buttonsToInvokeUnits[1].GetComponent<Image>().sprite = prefabs[numsUsed[1]].GetComponent<Image>().sprite;
-		buttonsToInvokeUnits[1].GetComponent<NormalUnit>().prefab = prefabs[numsUsed[1]].GetComponent<NormalUnit>().prefab;
-		buttonsToInvokeUnits[1].GetComponent<NormalUnit>().gold = prefabs[numsUsed[1]].GetComponent<NormalUnit>().gold;
+		ChangeDeck();
 
-		buttonsToInvokeUnits[2].GetComponent<Image>().sprite = prefabs[numsUsed[2]].GetComponent<Image>().sprite;
-		buttonsToInvokeUnits[2].GetComponent<NormalUnit>().prefab = prefabs[numsUsed[2]].GetComponent<NormalUnit>().prefab;
-		buttonsToInvokeUnits[2].GetComponent<NormalUnit>().gold = prefabs[numsUsed[2]].GetComponent<NormalUnit>().gold;
-
-		buttonsToInvokeUnits[3].GetComponent<Image>().sprite = prefabs[numsUsed[3]].GetComponent<Image>().sprite;
-		buttonsToInvokeUnits[3].GetComponent<NormalUnit>().prefab = prefabs[numsUsed[3]].GetComponent<NormalUnit>().prefab;
-		buttonsToInvokeUnits[3].GetComponent<NormalUnit>().gold = prefabs[numsUsed[3]].GetComponent<NormalUnit>().gold;*/
-		#endregion
 	}
 
 	void Update () {
 		gos = GameObject.FindGameObjectsWithTag("Unit");
 		gos2 = GameObject.FindGameObjectsWithTag("Grid");
 		goldtxt.GetComponent<Text>().text = "Gold: " + gold[playerTurn - 1];
+	}
+
+	void ChangeDeck()
+	{
+		switch (PlayerPrefs.GetInt("P" + playerTurn))
+		{
+			case 1:
+				for (int i = 0; i < 4; i++)
+				{
+					buttonsToInvokeUnits[i].GetComponent<Image>().sprite = prefabs[numsUsed[i]].GetComponent<Image>().sprite;
+					buttonsToInvokeUnits[i].GetComponent<NormalUnit>().prefab = prefabs[numsUsed[i]].GetComponent<NormalUnit>().prefab;
+					buttonsToInvokeUnits[i].GetComponent<NormalUnit>().gold = prefabs[numsUsed[i]].GetComponent<NormalUnit>().gold;
+				}
+				break;
+			case 2:
+				for (int i = 0; i < 4; i++)
+				{
+					buttonsToInvokeUnits[i].GetComponent<Image>().sprite = prefabs_p2[numsUsed[i]].GetComponent<Image>().sprite;
+					buttonsToInvokeUnits[i].GetComponent<NormalUnit>().prefab = prefabs_p2[numsUsed[i]].GetComponent<NormalUnit>().prefab;
+					buttonsToInvokeUnits[i].GetComponent<NormalUnit>().gold = prefabs_p2[numsUsed[i]].GetComponent<NormalUnit>().gold;
+				}
+				break;
+			case 3:
+				for (int i = 0; i < 4; i++)
+				{
+					buttonsToInvokeUnits[i].GetComponent<Image>().sprite = prefabs_p3[numsUsed[i]].GetComponent<Image>().sprite;
+					buttonsToInvokeUnits[i].GetComponent<NormalUnit>().prefab = prefabs_p3[numsUsed[i]].GetComponent<NormalUnit>().prefab;
+					buttonsToInvokeUnits[i].GetComponent<NormalUnit>().gold = prefabs_p3[numsUsed[i]].GetComponent<NormalUnit>().gold;
+				}
+				break;
+		}
 	}
 
 	public void endTurn() {
@@ -93,5 +105,8 @@ public class Main : MonoBehaviour {
 
 		for (int i = 0; i < buttonsToInvokeUnits.Length; i++) buttonsToInvokeUnits[i].GetComponent<NormalUnit>().invokedThisTurn = false;
 		turn.GetComponent<Text>().text = "Turno: Player " + playerTurn;
+		NormalUnit.alreadyClicked = !NormalUnit.alreadyClicked;
+
+		ChangeDeck();
 	}
 }
