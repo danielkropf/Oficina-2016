@@ -50,7 +50,7 @@ public class NormalUnit : MonoBehaviour {
 			{
 				if (myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().onMe == null)
 				{
-					myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<SpriteRenderer>().color = new Color32(29, 243, 21, 255);
+					myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<SpriteRenderer>().color = new Color32(29, 243, 21, 125);
 					myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().incomingNewUnit = prefab;
 					myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().playerNewUnitAttached = myKing.GetComponent<Movement2>().player;
 					myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().button = this.gameObject;
@@ -61,7 +61,7 @@ public class NormalUnit : MonoBehaviour {
 				{
 					if (myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().onMe == null)
 					{
-						myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyUp.GetComponent<SpriteRenderer>().color = new Color32(29, 243, 21, 255);
+						myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyUp.GetComponent<SpriteRenderer>().color = new Color32(29, 243, 21, 125);
 						myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().incomingNewUnit = prefab;
 						myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().playerNewUnitAttached = myKing.GetComponent<Movement2>().player;
 						myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().button = this.gameObject;
@@ -74,7 +74,7 @@ public class NormalUnit : MonoBehaviour {
 				{
 					if (myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyDown.GetComponent<Movment>().onMe == null)
 					{
-						myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyDown.GetComponent<SpriteRenderer>().color = new Color32(29, 243, 21, 255);
+						myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyDown.GetComponent<SpriteRenderer>().color = new Color32(29, 243, 21, 125);
 						myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyDown.GetComponent<Movment>().incomingNewUnit = prefab;
 						myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyDown.GetComponent<Movment>().playerNewUnitAttached = myKing.GetComponent<Movement2>().player;
 						myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyDown.GetComponent<Movment>().button = this.gameObject;
@@ -89,7 +89,7 @@ public class NormalUnit : MonoBehaviour {
 			{
 				if (myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyDown.GetComponent<Movment>().onMe == null)
 				{
-					myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyDown.GetComponent<SpriteRenderer>().color = new Color32(29, 243, 21, 255);
+					myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyDown.GetComponent<SpriteRenderer>().color = new Color32(29, 243, 21, 125);
 					myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyDown.GetComponent<Movment>().incomingNewUnit = prefab;
 					myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyDown.GetComponent<Movment>().playerNewUnitAttached = myKing.GetComponent<Movement2>().player;
 					myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyDown.GetComponent<Movment>().button = this.gameObject;
@@ -102,7 +102,7 @@ public class NormalUnit : MonoBehaviour {
 			{
 				if (myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().onMe == null)
 				{
-					myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<SpriteRenderer>().color = new Color32(29, 243, 21, 255);
+					myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<SpriteRenderer>().color = new Color32(29, 243, 21, 125);
 					myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().incomingNewUnit = prefab;
 					myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().playerNewUnitAttached = myKing.GetComponent<Movement2>().player;
 					myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().button = this.gameObject;
@@ -113,7 +113,7 @@ public class NormalUnit : MonoBehaviour {
 				{
 					if (myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().onMe == null)
 					{
-						myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyUp.GetComponent<SpriteRenderer>().color = new Color32(29, 243, 21, 255);
+						myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyUp.GetComponent<SpriteRenderer>().color = new Color32(29, 243, 21, 125);
 						myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().incomingNewUnit = prefab;
 						myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().playerNewUnitAttached = myKing.GetComponent<Movement2>().player;
 						myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().button = this.gameObject;
@@ -126,7 +126,7 @@ public class NormalUnit : MonoBehaviour {
 				{
 					if (myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyDown.GetComponent<Movment>().onMe == null)
 					{
-						myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyDown.GetComponent<SpriteRenderer>().color = new Color32(29, 243, 21, 255);
+						myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyDown.GetComponent<SpriteRenderer>().color = new Color32(29, 243, 21, 125);
 						myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyDown.GetComponent<Movment>().incomingNewUnit = prefab;
 						myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyDown.GetComponent<Movment>().playerNewUnitAttached = myKing.GetComponent<Movement2>().player;
 						myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyDown.GetComponent<Movment>().button = this.gameObject;
@@ -141,7 +141,7 @@ public class NormalUnit : MonoBehaviour {
 			{
 				if (myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().onMe == null)
 				{
-					myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyUp.GetComponent<SpriteRenderer>().color = new Color32(29, 243, 21, 255);
+					myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyUp.GetComponent<SpriteRenderer>().color = new Color32(29, 243, 21, 125);
 					myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().incomingNewUnit = prefab;
 					myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().playerNewUnitAttached = myKing.GetComponent<Movement2>().player;
 					myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().button = this.gameObject;
@@ -164,7 +164,7 @@ public class NormalUnit : MonoBehaviour {
 			{
 				if (myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().onMe == null)
 				{
-					myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 255);
+					myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 125);
 					myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().incomingNewUnit = null;
 				}
 				else
@@ -178,7 +178,7 @@ public class NormalUnit : MonoBehaviour {
 				{
 					if (myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().onMe == null)
 					{
-						myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyUp.GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 255);
+						myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyUp.GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 125);
 						myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().incomingNewUnit = null;
 					}
 					else
@@ -194,7 +194,7 @@ public class NormalUnit : MonoBehaviour {
 				{
 					if (myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyDown.GetComponent<Movment>().onMe == null)
 					{
-						myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyDown.GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 255);
+						myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyDown.GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 125);
 						myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyDown.GetComponent<Movment>().incomingNewUnit = null;
 					}
 					else
@@ -212,7 +212,7 @@ public class NormalUnit : MonoBehaviour {
 			{
 				if (myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyDown.GetComponent<Movment>().onMe == null)
 				{
-					myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyDown.GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 255);
+					myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyDown.GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 125);
 					myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyDown.GetComponent<Movment>().incomingNewUnit = null;
 				}
 				else
@@ -228,7 +228,7 @@ public class NormalUnit : MonoBehaviour {
 			{
 				if (myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().onMe == null)
 				{
-					myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 255);
+					myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 125);
 					myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().incomingNewUnit = null;
 				}
 				else
@@ -241,7 +241,7 @@ public class NormalUnit : MonoBehaviour {
 				{
 					if (myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().onMe == null)
 					{
-						myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyUp.GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 255);
+						myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyUp.GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 125);
 						myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().incomingNewUnit = null;
 					}
 					else
@@ -255,7 +255,7 @@ public class NormalUnit : MonoBehaviour {
 				{
 					if (myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyDown.GetComponent<Movment>().onMe == null)
 					{
-						myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyDown.GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 255);
+						myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyDown.GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 125);
 						myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyDown.GetComponent<Movment>().incomingNewUnit = null;
 					}
 					else
@@ -272,7 +272,7 @@ public class NormalUnit : MonoBehaviour {
 			{
 				if (myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().onMe == null)
 				{
-					myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyUp.GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 255);
+					myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyUp.GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 125);
 					myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().incomingNewUnit = null;
 				}
 				else
