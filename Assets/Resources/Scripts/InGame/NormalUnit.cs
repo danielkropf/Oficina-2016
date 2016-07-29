@@ -41,7 +41,6 @@ public class NormalUnit : MonoBehaviour {
 
 		if (!b)
 		{
-			Debug.Log("!b");
 			#region Started = true
 			Debug.Log("clickou");
 
@@ -156,7 +155,6 @@ public class NormalUnit : MonoBehaviour {
 		}
 		else
 		{
-			Debug.Log("b");
 			#region Started = False
 
 			#region Right

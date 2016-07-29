@@ -15,8 +15,11 @@ public class Main : MonoBehaviour {
 	public GameObject goldtxt;
 	private Text txt;
 	public GameObject[] prefabs = new GameObject[10];
+	public Sprite[] sprites = new Sprite[10];
 	public GameObject[] prefabs_p2 = new GameObject[10];
+	public Sprite[] sprites_p2 = new Sprite[10];
 	public GameObject[] prefabs_p3 = new GameObject[10];
+	public Sprite[] sprites_p3 = new Sprite[10];
 	public int[] numsUsed = new int[4];
 
 	void Start () {
@@ -55,7 +58,7 @@ public class Main : MonoBehaviour {
 			case 1:
 				for (int i = 0; i < 4; i++)
 				{
-					buttonsToInvokeUnits[i].GetComponent<Image>().sprite = prefabs[numsUsed[i]].GetComponent<Image>().sprite;
+					buttonsToInvokeUnits[i].GetComponent<Image>().sprite = sprites[i];
 					buttonsToInvokeUnits[i].GetComponent<NormalUnit>().prefab = prefabs[numsUsed[i]].GetComponent<NormalUnit>().prefab;
 					buttonsToInvokeUnits[i].GetComponent<NormalUnit>().gold = prefabs[numsUsed[i]].GetComponent<NormalUnit>().gold;
 				}
@@ -63,7 +66,7 @@ public class Main : MonoBehaviour {
 			case 2:
 				for (int i = 0; i < 4; i++)
 				{
-					buttonsToInvokeUnits[i].GetComponent<Image>().sprite = prefabs_p2[numsUsed[i]].GetComponent<Image>().sprite;
+					buttonsToInvokeUnits[i].GetComponent<Image>().sprite = sprites_p2[i];
 					buttonsToInvokeUnits[i].GetComponent<NormalUnit>().prefab = prefabs_p2[numsUsed[i]].GetComponent<NormalUnit>().prefab;
 					buttonsToInvokeUnits[i].GetComponent<NormalUnit>().gold = prefabs_p2[numsUsed[i]].GetComponent<NormalUnit>().gold;
 				}
@@ -71,7 +74,7 @@ public class Main : MonoBehaviour {
 			case 3:
 				for (int i = 0; i < 4; i++)
 				{
-					buttonsToInvokeUnits[i].GetComponent<Image>().sprite = prefabs_p3[numsUsed[i]].GetComponent<Image>().sprite;
+					buttonsToInvokeUnits[i].GetComponent<Image>().sprite = sprites_p3[i];
 					buttonsToInvokeUnits[i].GetComponent<NormalUnit>().prefab = prefabs_p3[numsUsed[i]].GetComponent<NormalUnit>().prefab;
 					buttonsToInvokeUnits[i].GetComponent<NormalUnit>().gold = prefabs_p3[numsUsed[i]].GetComponent<NormalUnit>().gold;
 				}
