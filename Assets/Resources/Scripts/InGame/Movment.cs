@@ -35,6 +35,11 @@ public class Movment : MonoBehaviour {
 			temp.GetComponent<Movement2>().placedOn = this.gameObject;
 			temp.GetComponent<Movement2>().started = false;
 			temp.GetComponent<Movement2>().action = false;
+			temp.GetComponent<Movement2>().movs++;
+
+			if (temp.GetComponent<Movement2>().movs <= 1 && temp.name == "Garen(Clone)")
+				temp.GetComponent<Movement2>().action = true;
+
 			onMe = incoming;
 			incoming = null;
 			temp = null;

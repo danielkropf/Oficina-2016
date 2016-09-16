@@ -11,13 +11,14 @@ public class Attack : MonoBehaviour {
 	}
 	
 	void Update () {
-	
+
 	}
 
 	void OnMouseUp() {
 		if (attacking != null)
 		{
-			attacking.GetComponent<Movement2>().life -= unitAttached.GetComponent<Movement2>().damage;
+            if(attacking.name != "Mage(Clone)")attacking.GetComponent<Movement2>().life -= unitAttached.GetComponent<Movement2>().damage;
+
 			if (attacking.GetComponent<Movement2>().life <= 0)
 				if (Main.playerTurn == 1) Main.gold[1] += attacking.GetComponent<Movement2>().goldToEarn;
 				else Main.gold[0] += attacking.GetComponent<Movement2>().goldToEarn;
@@ -29,6 +30,7 @@ public class Attack : MonoBehaviour {
 			temp.GetComponent<Movement2>().ChangeColor(true);
 			temp.GetComponent<Movement2>().started = false;
 			temp.GetComponent<Movement2>().action = false;
+			temp.GetComponent<Movement2>().movs++;
 
 			temp = null;
 		}

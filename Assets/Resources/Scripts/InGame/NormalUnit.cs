@@ -19,7 +19,7 @@ public class NormalUnit : MonoBehaviour {
 
 
 	void Start () {
-		
+
 	}
 	
 	void Update ()
@@ -42,7 +42,6 @@ public class NormalUnit : MonoBehaviour {
 		if (!b)
 		{
 			#region Started = true
-			Debug.Log("clickou");
 
 			#region Right
 			if (myKing.GetComponent<Movement2>().placedOn.GetComponent<Movment>().immediatelyRight != null)

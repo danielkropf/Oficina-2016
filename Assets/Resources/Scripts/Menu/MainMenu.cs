@@ -27,6 +27,5 @@ public class MainMenu : MonoBehaviour {
 				Application.LoadLevel("Menu");
 				break;
 		}
-		Debug.Log(go);
 	}
 }

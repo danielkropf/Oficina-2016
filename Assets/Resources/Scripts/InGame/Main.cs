@@ -48,7 +48,7 @@ public class Main : MonoBehaviour {
 	void Update () {
 		gos = GameObject.FindGameObjectsWithTag("Unit");
 		gos2 = GameObject.FindGameObjectsWithTag("Grid");
-		goldtxt.GetComponent<Text>().text = "Gold: " + gold[playerTurn - 1];
+		goldtxt.GetComponent<Text>().text = "Ouro: " + gold[playerTurn - 1];
 	}
 
 	void ChangeDeck()
@@ -58,7 +58,7 @@ public class Main : MonoBehaviour {
 			case 1:
 				for (int i = 0; i < 4; i++)
 				{
-					buttonsToInvokeUnits[i].GetComponent<Image>().sprite = sprites[i];
+                    buttonsToInvokeUnits[i].GetComponent<Image>().sprite = sprites[numsUsed[i]];
 					buttonsToInvokeUnits[i].GetComponent<NormalUnit>().prefab = prefabs[numsUsed[i]].GetComponent<NormalUnit>().prefab;
 					buttonsToInvokeUnits[i].GetComponent<NormalUnit>().gold = prefabs[numsUsed[i]].GetComponent<NormalUnit>().gold;
 				}
@@ -66,7 +66,7 @@ public class Main : MonoBehaviour {
 			case 2:
 				for (int i = 0; i < 4; i++)
 				{
-					buttonsToInvokeUnits[i].GetComponent<Image>().sprite = sprites_p2[i];
+                    buttonsToInvokeUnits[i].GetComponent<Image>().sprite = sprites_p2[numsUsed[i]];
 					buttonsToInvokeUnits[i].GetComponent<NormalUnit>().prefab = prefabs_p2[numsUsed[i]].GetComponent<NormalUnit>().prefab;
 					buttonsToInvokeUnits[i].GetComponent<NormalUnit>().gold = prefabs_p2[numsUsed[i]].GetComponent<NormalUnit>().gold;
 				}
@@ -74,7 +74,7 @@ public class Main : MonoBehaviour {
 			case 3:
 				for (int i = 0; i < 4; i++)
 				{
-					buttonsToInvokeUnits[i].GetComponent<Image>().sprite = sprites_p3[i];
+                    buttonsToInvokeUnits[i].GetComponent<Image>().sprite = sprites_p3[numsUsed[i]];
 					buttonsToInvokeUnits[i].GetComponent<NormalUnit>().prefab = prefabs_p3[numsUsed[i]].GetComponent<NormalUnit>().prefab;
 					buttonsToInvokeUnits[i].GetComponent<NormalUnit>().gold = prefabs_p3[numsUsed[i]].GetComponent<NormalUnit>().gold;
 				}
@@ -97,6 +97,7 @@ public class Main : MonoBehaviour {
 		for (int i = 0; i < gos.Length; i++)
 		{
 			gos[i].GetComponent<Movement2>().action = true;
+			gos[i].GetComponent<Movement2>().movs = 0;
 			gos[i].GetComponent<Movement2>().ChangeColor(true);
 			gos[i].GetComponent<Movement2>().started = false;
 		}
@@ -107,7 +108,7 @@ public class Main : MonoBehaviour {
 		NormalUnit.cClick = true;
 
 		for (int i = 0; i < buttonsToInvokeUnits.Length; i++) buttonsToInvokeUnits[i].GetComponent<NormalUnit>().invokedThisTurn = false;
-		turn.GetComponent<Text>().text = "Turno: Player " + playerTurn;
+		turn.GetComponent<Text>().text = "Turno: Jogador " + playerTurn;
 		NormalUnit.alreadyClicked = !NormalUnit.alreadyClicked;
 
 		ChangeDeck();

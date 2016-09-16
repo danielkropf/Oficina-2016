@@ -9,6 +9,7 @@ public class Movement2 : MonoBehaviour {
 	public bool started;
 	public int player;
 	public bool action = true;
+	public int movs = 0;
 	public int life;
 	public int damage;
 	public GameObject attackMarker;
@@ -29,10 +30,16 @@ public class Movement2 : MonoBehaviour {
 		switch (this.name)
 		{
 			case "Goat(Clone)":
-				go.GetComponent<Movement2>().damage--;
+                if (go.GetComponent<Movement2>().damage > 1) go.GetComponent<Movement2>().damage--;
+				break;
+			case "High Warrior(Clone)":
+				if (this.GetComponent<Movement2>().life < 8) this.GetComponent<Movement2>().life++;
+				break;
+			case "Thief(Clone)":
+				if (Main.playerTurn == 1 && Main.gold[1] >= this.GetComponent<Movement2>().damage) Main.gold[0] += this.GetComponent<Movement2>().damage; Main.gold[1] -= this.GetComponent<Movement2>().damage;
+				if (Main.playerTurn == 2 && Main.gold[0] >= this.GetComponent<Movement2>().damage) Main.gold[0] -= this.GetComponent<Movement2>().damage; Main.gold[1] += this.GetComponent<Movement2>().damage;
 				break;
 			default:
-				Debug.Log(this.name);
 				break;
 		}
 	}
@@ -42,6 +49,11 @@ public class Movement2 : MonoBehaviour {
 		attackMarker.GetComponent<Attack>().unitAttached = this.gameObject;
 		if (life <= 0) Destroy(this.gameObject);
 		goldToEarn = gold / 3 * 2;
+        if (this.name.Equals("Viking(Clone)")) damage = 1 + (8 - life);
+        if (this.gameObject.name.Equals("king cartoon") || this.gameObject.name.Equals("enemy cartoon"))
+        {
+            if (life <= 0) Application.LoadLevel("Menu");
+        }
 	}
 
 	public void ChangeColor(bool b)
@@ -50,7 +62,6 @@ public class Movement2 : MonoBehaviour {
 		if (!b)
 		{
 			#region Started = true
-			Debug.Log("clickou");
 
 			#region Right
 			if (placedOn.GetComponent<Movment>().immediatelyRight != null)
