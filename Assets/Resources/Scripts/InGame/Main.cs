@@ -21,9 +21,10 @@ public class Main : MonoBehaviour {
 	public GameObject[] prefabs_p3 = new GameObject[10];
 	public Sprite[] sprites_p3 = new Sprite[10];
 	public int[] numsUsed = new int[4];
+	private GameObject historico;
 
 	void Start () {
-
+		historico = GameObject.FindGameObjectWithTag("Historic");
 		for(int i = 0; i < 4; i++)
 		{
 			int t = Random.Range(0, 9);
@@ -40,6 +41,10 @@ public class Main : MonoBehaviour {
 			}
 			numsUsed[i] = t;
 		}
+
+		gold [0] = 20;
+		gold [1] = 20;
+		playerTurn = 1;
 
 		ChangeDeck();
 
@@ -83,6 +88,8 @@ public class Main : MonoBehaviour {
 	}
 
 	public void endTurn() {
+
+
 		if (playerTurn == 1)
 		{
 			playerTurn = 2;
@@ -112,5 +119,6 @@ public class Main : MonoBehaviour {
 		NormalUnit.alreadyClicked = !NormalUnit.alreadyClicked;
 
 		ChangeDeck();
+		historico.GetComponent<Text>().text = "P" + playerTurn + "<color=#FE3>" +" Gold + 3" + "</color>" + "\n" + historico.GetComponent<Text>().text;
 	}
 }

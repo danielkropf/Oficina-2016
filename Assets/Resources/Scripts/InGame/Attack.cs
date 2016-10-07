@@ -37,8 +37,8 @@ public class Attack : MonoBehaviour {
 			{
 				int x = unitAttached.GetComponent<Movement2>().damage ;
 				attacking.GetComponent<Movement2>().life -= unitAttached.GetComponent<Movement2>().damage;
-				e = "<color=#810>"; e += "P" + player.ToString() + " " + s[0] + " -" + x + " Vida"; e += "</color>";
-				historico.GetComponent<Text>().text += e + "\n";
+				e = "P" + player.ToString() + " " + "<color=#810>" +  s[0] + " -" + x.ToString() + " Vida" + "</color>";
+				historico.GetComponent<Text>().text = e + "\n" + historico.GetComponent<Text>().text;
 			}
 
 			if (attacking.GetComponent<Movement2>().life <= 0)
@@ -46,25 +46,25 @@ public class Attack : MonoBehaviour {
 				if (Main.playerTurn == 1)
 				{
 					Main.gold[1] += attacking.GetComponent<Movement2>().goldToEarn;
-					e = "<color=#FE3>"; e += "P" + "2 +" + attacking.GetComponent<Movement2>().goldToEarn + " Gold"; e += "</color>";
+					e = "P" + "2 +" + "<color=#FE3>" + attacking.GetComponent<Movement2>().goldToEarn + " Gold" + "</color>";
 				}
 				else
 				{
 					Main.gold[0] += attacking.GetComponent<Movement2>().goldToEarn;
-					e = "<color=#FE3>"; e += "P" + "1 +" + attacking.GetComponent<Movement2>().goldToEarn + " Gold"; e += "</color>";
+					e = "P" + "1 +" + "<color=#FE3>" +  attacking.GetComponent<Movement2>().goldToEarn + " Gold" + "</color>";
 				}
-				historico.GetComponent<Text>().text += e + "\n";
+				historico.GetComponent<Text>().text = e + "\n" + historico.GetComponent<Text>().text;
 			}
 
 			s = unitAttached.name.Split('(');
 			unitAttached.GetComponent<Movement2>().life -= attacking.GetComponent<Movement2>().damage;
-			historico.GetComponent<Text>().text += "<color=#810>" + "P" + playerEnemy.ToString() + " " + s[0] + " -" + attacking.GetComponent<Movement2>().damage + " Vida" + "</color>" + "\n";
+			historico.GetComponent<Text>().text = "P" + playerEnemy.ToString() + "<color=#810>" + " " + s[0] + " -" + attacking.GetComponent<Movement2>().damage + " Vida" + "</color>" + "\n" + historico.GetComponent<Text>().text ;
 
 			attacking.GetComponent<Movement2>().Abilities(unitAttached);
 			if (unitAttached.GetComponent<Movement2>().life <= 0)
 			{
 				Main.gold[Main.playerTurn - 1] += unitAttached.GetComponent<Movement2>().goldToEarn;
-				historico.GetComponent<Text>().text += "<color=#FE3>" + "P" + player.ToString() + " +" + unitAttached.GetComponent<Movement2>().goldToEarn + " Gold" + "</color>" + "\n";
+				historico.GetComponent<Text>().text = "P" + player.ToString() + "<color=#FE3>" + " +" + unitAttached.GetComponent<Movement2>().goldToEarn + " Gold" + "</color>" + "\n" + historico.GetComponent<Text>().text ;
 			}
 
 			GameObject temp = attacking;
