@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Resources\Scripts\Fade.cs" />
      <Compile Include="Assets\Resources\Scripts\InGame\Attack.cs" />
      <Compile Include="Assets\Resources\Scripts\InGame\GetInfo.cs" />
      <Compile Include="Assets\Resources\Scripts\InGame\Main.cs" />
@@ -54,6 +55,7 @@
      <Compile Include="Assets\Resources\Scripts\InGame\NormalUnit.cs" />
      <Compile Include="Assets\Resources\Scripts\Menu\ChooseMenu.cs" />
      <Compile Include="Assets\Resources\Scripts\Menu\MainMenu.cs" />
+     <Compile Include="Assets\Resources\Scripts\Menu\Tutorial.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
