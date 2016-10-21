@@ -25,24 +25,11 @@ public class Main : MonoBehaviour {
 
 	void Start () {
 		historico = GameObject.FindGameObjectWithTag("Historic");
-		for(int i = 0; i < 4; i++)
-		{
-			int t = Random.Range(0, 9);
-			int n = 0;
+		int[] n = RandomF.Range(0, 10, 1000);
+		for (int i = 0; i < 4; i++)
+			numsUsed[i] = n[i];
 
-			while(n < 4)
-			{
-				if(numsUsed[n] == t)
-				{
-					t = Random.Range(0,9);
-					n = -1;
-				}
-				n++;
-			}
-			numsUsed[i] = t;
-		}
-
-		gold [0] = 20;
+		gold[0] = 20;
 		gold [1] = 20;
 		playerTurn = 1;
 

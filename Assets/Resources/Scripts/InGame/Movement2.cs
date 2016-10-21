@@ -19,6 +19,7 @@ public class Movement2 : MonoBehaviour {
 	public int gold;
 	public int goldToEarn;
 	public GameObject[] btns;
+	public string skillDescription;
 	Text txt;
 	
 	void Start () {
