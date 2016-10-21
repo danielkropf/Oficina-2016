@@ -16,8 +16,6 @@ public class NormalUnit : MonoBehaviour {
 	public int gold;
 	public static bool cClick = true;
 
-
-
 	void Start () {
 
 	}
@@ -149,6 +147,7 @@ public class NormalUnit : MonoBehaviour {
 
 			Main.armyClicked = prefab;
 			Main.clickedAnArmy = true;
+			Main.btnClicked = this.gameObject;
 
 			#endregion
 		}
@@ -282,6 +281,7 @@ public class NormalUnit : MonoBehaviour {
 
 			Main.armyClicked = null;
 			Main.clickedAnArmy = false;
+			Main.btnClicked = null;
 
 			#endregion
 		}

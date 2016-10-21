@@ -6,6 +6,7 @@ public class Main : MonoBehaviour {
 
 	public static bool clickedAnArmy;
 	public static GameObject armyClicked;
+	public static GameObject btnClicked;
 	public static int playerTurn = 1;
 	public static GameObject[] gos;
 	public static GameObject[] gos2;
@@ -23,7 +24,11 @@ public class Main : MonoBehaviour {
 	public int[] numsUsed = new int[4];
 	private GameObject historico;
 
+	public GameObject btn;
+
 	void Start () {
+		armyClicked = null;
+		btnClicked = null;
 		historico = GameObject.FindGameObjectWithTag("Historic");
 		int[] n = RandomF.Range(0, 10, 1000);
 		for (int i = 0; i < 4; i++)
@@ -34,7 +39,6 @@ public class Main : MonoBehaviour {
 		playerTurn = 1;
 
 		ChangeDeck();
-
 	}
 
 	void Update () {
@@ -72,6 +76,35 @@ public class Main : MonoBehaviour {
 				}
 				break;
 		}
+	}
+
+	public void CancelAction()
+	{
+		btn = btnClicked;
+		Debug.Log(clickedAnArmy);
+		GameObject[] units = GameObject.FindGameObjectsWithTag("Unit");
+
+		for(int i = 0; i < units.Length; i++)
+		{
+			units[i].GetComponent<Movement2>().started = false;
+		}
+
+		if(btnClicked != null)
+		{
+			btnClicked.GetComponent<NormalUnit>().ChangeColor(true);
+			armyClicked = null;
+			clickedAnArmy = false;
+			btnClicked = null;
+		}
+		else
+		{
+			armyClicked.GetComponent<Movement2>().ChangeColor(true);
+			armyClicked = null;
+			clickedAnArmy = false;
+			btnClicked = null;
+		}
+
+		NormalUnit.cClick = true;
 	}
 
 	public void endTurn() {
