@@ -12,6 +12,8 @@ public class Movement2 : MonoBehaviour {
 	public int movs = 0;
 	public int life;
 	public int damage;
+	public int defaultLife;
+	public int defaultDmg;
 	public GameObject attackMarker;
 	public GameObject vida;
 	public GameObject dano;
@@ -55,6 +57,66 @@ public class Movement2 : MonoBehaviour {
         {
             if (life <= 0) Application.LoadLevel("Menu");
         }
+	}
+
+	void KingAbilities(int Reino)
+	{
+		//PlayerPrefs.GetInt("P" + playerTurn)
+		switch (Reino)
+		{
+			case 1:
+			if (placedOn.GetComponent<Movment>().immediatelyRight != null)
+			{
+				placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().incoming = this.gameObject;
+
+				if (placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyUp != null)
+				{
+					placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().bonusDmg = 1;
+					placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().bonusLife = 1;
+				}
+				if (placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyDown != null)
+				{
+					placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyDown.GetComponent<Movment>().bonusDmg = 1;
+					placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyDown.GetComponent<Movment>().bonusLife = 1;
+				}
+			}
+
+			if (placedOn.GetComponent<Movment>().immediatelyDown != null)
+			{
+				placedOn.GetComponent<Movment>().immediatelyDown.GetComponent<Movment>().bonusDmg = 1;
+				placedOn.GetComponent<Movment>().immediatelyDown.GetComponent<Movment>().bonusLife = 1;
+			}
+
+			if (placedOn.GetComponent<Movment>().immediatelyLeft != null)
+			{
+				placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().bonusDmg = 1;
+				placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().bonusLife = 1;
+
+				if (placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyUp != null)
+				{
+					placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().bonusDmg = 1;
+					placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().bonusLife = 1;
+				}
+
+				if (placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyDown != null)
+				{
+					placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyDown.GetComponent<Movment>().bonusDmg = 1;
+					placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyDown.GetComponent<Movment>().bonusLife = 1;
+				}
+			}
+
+			if (placedOn.GetComponent<Movment>().immediatelyUp != null)
+			{
+				placedOn.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().bonusDmg = 1;
+				placedOn.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().bonusLife = 1;
+			}
+
+				break;
+			case 2:
+				break;
+			case 3:
+				break;
+		}
 	}
 
 	public void ChangeColor(bool b)

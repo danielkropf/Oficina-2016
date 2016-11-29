@@ -15,6 +15,9 @@ public class Movment : MonoBehaviour {
 	public int playerNewUnitAttached;
 	public GameObject vida;
 	public GameObject dmg;
+	public int bonusLife;
+	public int bonusDmg;
+
 
 	void Start () {
 	
