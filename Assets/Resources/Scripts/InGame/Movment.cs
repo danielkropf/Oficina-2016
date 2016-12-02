@@ -15,8 +15,6 @@ public class Movment : MonoBehaviour {
 	public int playerNewUnitAttached;
 	public GameObject vida;
 	public GameObject dmg;
-	public int bonusLife;
-	public int bonusDmg;
 
 
 	void Start () {
@@ -36,6 +34,7 @@ public class Movment : MonoBehaviour {
 			temp.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, temp.transform.position.z);
 			temp.GetComponent<Movement2>().placedOn.GetComponent<Movment>().onMe = null;
 			temp.GetComponent<Movement2>().placedOn = this.gameObject;
+            temp.GetComponent<Movement2>().arroundMe = RandomF.FindSurroundings(this.gameObject);
 			temp.GetComponent<Movement2>().started = false;
 			temp.GetComponent<Movement2>().action = false;
 			temp.GetComponent<Movement2>().movs++;

@@ -42,4 +42,50 @@ public static class RandomF{
 			this.chance = chance;
 		}
 	}
+
+    public static GameObject[] FindSurroundings(GameObject me)
+    {
+        GameObject[] arroundMe = new GameObject[8];
+
+        if (me.GetComponent<Movment>().immediatelyRight != null)
+        {
+            arroundMe[0] = me.GetComponent<Movment>().immediatelyRight;
+
+            if (me.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyUp != null)
+            {
+                arroundMe[1] = me.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyUp;
+            }
+            if (me.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyDown != null)
+            {
+                arroundMe[2] = me.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyDown;
+            }
+        }
+
+        if (me.GetComponent<Movment>().immediatelyDown != null)
+        {
+            arroundMe[3] = me.GetComponent<Movment>().immediatelyDown;
+        }
+
+        if (me.GetComponent<Movment>().immediatelyLeft != null)
+        {
+            arroundMe[4] = me.GetComponent<Movment>().immediatelyLeft;
+
+            if (me.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyUp != null)
+            {
+                arroundMe[5] = me.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyUp;
+            }
+
+            if (me.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyDown != null)
+            {
+                arroundMe[6] = me.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyDown;
+            }
+        }
+
+        if (me.GetComponent<Movment>().immediatelyUp != null)
+        {
+            arroundMe[7] = me.GetComponent<Movment>().immediatelyUp;
+        }
+
+        return arroundMe;
+    }
 }

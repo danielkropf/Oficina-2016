@@ -12,8 +12,7 @@ public class Movement2 : MonoBehaviour {
 	public int movs = 0;
 	public int life;
 	public int damage;
-	public int defaultLife;
-	public int defaultDmg;
+	public int bonusDmg;
 	public GameObject attackMarker;
 	public GameObject vida;
 	public GameObject dano;
@@ -22,10 +21,11 @@ public class Movement2 : MonoBehaviour {
 	public int goldToEarn;
 	public GameObject[] btns;
 	public string skillDescription;
+    public GameObject[] arroundMe;
 	Text txt;
 	
 	void Start () {
-
+        arroundMe = RandomF.FindSurroundings(placedOn);
 	}
 
 	public void Abilities(GameObject go)
@@ -57,67 +57,35 @@ public class Movement2 : MonoBehaviour {
         {
             if (life <= 0) Application.LoadLevel("Menu");
         }
+        if (PlayerPrefs.GetInt("P" + player) == 1)
+        {
+            for (int i = 0; i < arroundMe.Length; i++)
+            {
+                if (arroundMe[i] != null)
+                {
+                    if (arroundMe[i].GetComponent<Movment>().onMe != null)
+                    {
+                        if (arroundMe[i].GetComponent<Movment>().onMe.GetComponent<Movement2>().king)
+                        {
+                            if (arroundMe[i].GetComponent<Movment>().onMe.GetComponent<Movement2>().player == player)
+                            {
+                                bonusDmg = 1;
+                                i = 10;
+                            }
+                            else
+                                bonusDmg = 0;
+                        }
+                    }
+                    else
+                        bonusDmg = 0;
+                }
+                else
+                    bonusDmg = 0;
+            }
+        }
+
 	}
 
-	void KingAbilities(int Reino)
-	{
-		//PlayerPrefs.GetInt("P" + playerTurn)
-		switch (Reino)
-		{
-			case 1:
-			if (placedOn.GetComponent<Movment>().immediatelyRight != null)
-			{
-				placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().incoming = this.gameObject;
-
-				if (placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyUp != null)
-				{
-					placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().bonusDmg = 1;
-					placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().bonusLife = 1;
-				}
-				if (placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyDown != null)
-				{
-					placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyDown.GetComponent<Movment>().bonusDmg = 1;
-					placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyDown.GetComponent<Movment>().bonusLife = 1;
-				}
-			}
-
-			if (placedOn.GetComponent<Movment>().immediatelyDown != null)
-			{
-				placedOn.GetComponent<Movment>().immediatelyDown.GetComponent<Movment>().bonusDmg = 1;
-				placedOn.GetComponent<Movment>().immediatelyDown.GetComponent<Movment>().bonusLife = 1;
-			}
-
-			if (placedOn.GetComponent<Movment>().immediatelyLeft != null)
-			{
-				placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().bonusDmg = 1;
-				placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().bonusLife = 1;
-
-				if (placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyUp != null)
-				{
-					placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().bonusDmg = 1;
-					placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().bonusLife = 1;
-				}
-
-				if (placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyDown != null)
-				{
-					placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyDown.GetComponent<Movment>().bonusDmg = 1;
-					placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyDown.GetComponent<Movment>().bonusLife = 1;
-				}
-			}
-
-			if (placedOn.GetComponent<Movment>().immediatelyUp != null)
-			{
-				placedOn.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().bonusDmg = 1;
-				placedOn.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().bonusLife = 1;
-			}
-
-				break;
-			case 2:
-				break;
-			case 3:
-				break;
-		}
-	}
 
 	public void ChangeColor(bool b)
 	{
@@ -125,134 +93,23 @@ public class Movement2 : MonoBehaviour {
 		if (!b)
 		{
 			#region Started = true
+            for (int i = 0; i < arroundMe.Length; i++)
+            {
+                if (arroundMe[i] != null)
+                {
+                    if (arroundMe[i].GetComponent<Movment>().onMe == null)
+                    {
+                        arroundMe[i].GetComponent<SpriteRenderer>().color = new Color32(29, 243, 21, 125);
+                        arroundMe[i].GetComponent<Movment>().incoming = this.gameObject;
+                    }
 
-			#region Right
-			if (placedOn.GetComponent<Movment>().immediatelyRight != null)
-			{
-				if (placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().onMe == null)
-				{
-					placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<SpriteRenderer>().color = new Color32(29, 243, 21, 125);
-					placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().incoming = this.gameObject;
-				}
-				else if(placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().onMe.GetComponent<Movement2>().player != player)
-				{
-					placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().onMe.GetComponent<Movement2>().attackMarker.SetActive(true);
-					placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().onMe.GetComponent<Movement2>().attackMarker.GetComponent<Attack>().attacking = this.gameObject;
-				}
-
-				#region Right -> Up
-				if (placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyUp != null)
-				{
-					if (placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().onMe == null)
-					{
-						placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyUp.GetComponent<SpriteRenderer>().color = new Color32(29, 243, 21, 125);
-						placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().incoming = this.gameObject;
-					}
-					else if (placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().onMe.GetComponent<Movement2>().player != player)
-					{
-						placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().onMe.GetComponent<Movement2>().attackMarker.SetActive(true);
-						placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().onMe.GetComponent<Movement2>().attackMarker.GetComponent<Attack>().attacking = this.gameObject;
-					}
-				}
-				#endregion
-
-				#region Right -> Down
-				if (placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyDown != null)
-				{
-					if (placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyDown.GetComponent<Movment>().onMe == null)
-					{
-						placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyDown.GetComponent<SpriteRenderer>().color = new Color32(29, 243, 21, 125);
-						placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyDown.GetComponent<Movment>().incoming = this.gameObject;
-					}
-					else if (placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyDown.GetComponent<Movment>().onMe.GetComponent<Movement2>().player != player)
-					{
-						placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyDown.GetComponent<Movment>().onMe.GetComponent<Movement2>().attackMarker.SetActive(true);
-						placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyDown.GetComponent<Movment>().onMe.GetComponent<Movement2>().attackMarker.GetComponent<Attack>().attacking = this.gameObject;
-					}
-				}
-				#endregion
-			}
-			#endregion
-
-			#region Down
-			if (placedOn.GetComponent<Movment>().immediatelyDown != null)
-			{
-				if (placedOn.GetComponent<Movment>().immediatelyDown.GetComponent<Movment>().onMe == null)
-				{
-					placedOn.GetComponent<Movment>().immediatelyDown.GetComponent<SpriteRenderer>().color = new Color32(29, 243, 21, 125);
-					placedOn.GetComponent<Movment>().immediatelyDown.GetComponent<Movment>().incoming = this.gameObject;
-				}
-				else if (placedOn.GetComponent<Movment>().immediatelyDown.GetComponent<Movment>().onMe.GetComponent<Movement2>().player != player)
-				{
-					placedOn.GetComponent<Movment>().immediatelyDown.GetComponent<Movment>().onMe.GetComponent<Movement2>().attackMarker.SetActive(true);
-					placedOn.GetComponent<Movment>().immediatelyDown.GetComponent<Movment>().onMe.GetComponent<Movement2>().attackMarker.GetComponent<Attack>().attacking = this.gameObject;
-				}
-			}
-			#endregion
-
-			#region Left
-			if (placedOn.GetComponent<Movment>().immediatelyLeft != null)
-			{
-				if (placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().onMe == null)
-				{
-					placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<SpriteRenderer>().color = new Color32(29, 243, 21, 125);
-					placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().incoming = this.gameObject;
-				}
-				else if (placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().onMe.GetComponent<Movement2>().player != player)
-				{
-					placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().onMe.GetComponent<Movement2>().attackMarker.SetActive(true);
-					placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().onMe.GetComponent<Movement2>().attackMarker.GetComponent<Attack>().attacking = this.gameObject;
-				}
-
-				#region Left -> Up
-				if (placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyUp != null)
-				{
-					if (placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().onMe == null)
-					{
-						placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyUp.GetComponent<SpriteRenderer>().color = new Color32(29, 243, 21, 125);
-						placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().incoming = this.gameObject;
-					}
-					else if (placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().onMe.GetComponent<Movement2>().player != player)
-					{
-						placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().onMe.GetComponent<Movement2>().attackMarker.SetActive(true);
-						placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().onMe.GetComponent<Movement2>().attackMarker.GetComponent<Attack>().attacking = this.gameObject;
-					}
-				}
-				#endregion
-
-				#region Left -> Down
-				if (placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyDown != null)
-				{
-					if (placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyDown.GetComponent<Movment>().onMe == null)
-					{
-						placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyDown.GetComponent<SpriteRenderer>().color = new Color32(29, 243, 21, 125);
-						placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyDown.GetComponent<Movment>().incoming = this.gameObject;
-					}
-					else if (placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyDown.GetComponent<Movment>().onMe.GetComponent<Movement2>().player != player)
-					{
-						placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyDown.GetComponent<Movment>().onMe.GetComponent<Movement2>().attackMarker.SetActive(true);
-						placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyDown.GetComponent<Movment>().onMe.GetComponent<Movement2>().attackMarker.GetComponent<Attack>().attacking = this.gameObject;
-					}
-				}
-				#endregion
-			}
-			#endregion
-
-			#region Up
-			if (placedOn.GetComponent<Movment>().immediatelyUp != null)
-			{
-				if (placedOn.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().onMe == null)
-				{
-					placedOn.GetComponent<Movment>().immediatelyUp.GetComponent<SpriteRenderer>().color = new Color32(29, 243, 21, 125);
-					placedOn.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().incoming = this.gameObject;
-				}
-				else if (placedOn.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().onMe.GetComponent<Movement2>().player != player)
-				{
-					placedOn.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().onMe.GetComponent<Movement2>().attackMarker.SetActive(true);
-					placedOn.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().onMe.GetComponent<Movement2>().attackMarker.GetComponent<Attack>().attacking = this.gameObject;
-				}
-			}
-			#endregion
+                    else if (arroundMe[i].GetComponent<Movment>().onMe.GetComponent<Movement2>().player != player)
+                    {
+                        arroundMe[i].GetComponent<Movment>().onMe.GetComponent<Movement2>().attackMarker.SetActive(true);
+                        arroundMe[i].GetComponent<Movment>().onMe.GetComponent<Movement2>().attackMarker.GetComponent<Attack>().attacking = this.gameObject;
+                    }
+                }
+            }
 
 			Main.armyClicked = this.gameObject;
 			Main.clickedAnArmy = true;
@@ -262,130 +119,23 @@ public class Movement2 : MonoBehaviour {
 		else
 		{
 			#region Started = False
+            for (int i = 0; i < arroundMe.Length; i++)
+            {
+                if (arroundMe[i] != null)
+                {
+                    if (arroundMe[i].GetComponent<Movment>().onMe == null)
+                    {
+                        arroundMe[i].GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 125);
+                        arroundMe[i].GetComponent<Movment>().incoming = null;
+                    }
 
-			#region Right
-			if (placedOn.GetComponent<Movment>().immediatelyRight != null)
-			{
-				if (placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().onMe == null)
-				{
-					placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 125);
-					placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().incoming = null;
-				}
-				else
-				{
-					placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().onMe.GetComponent<Movement2>().attackMarker.SetActive(false);
-					placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().onMe.GetComponent<Movement2>().attackMarker.GetComponent<Attack>().attacking = null;
-				}
-
-				#region Right -> Up
-				if (placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyUp != null)
-				{
-					if (placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().onMe == null)
-					{
-						placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyUp.GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 125);
-						placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().incoming = null;
-					}
-					else
-					{
-						placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().onMe.GetComponent<Movement2>().attackMarker.SetActive(false);
-						placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().onMe.GetComponent<Movement2>().attackMarker.GetComponent<Attack>().attacking = null;
-					}
-				}
-				#endregion
-
-				#region Right -> Down
-				if (placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyDown != null)
-				{
-					if (placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyDown.GetComponent<Movment>().onMe == null)
-					{
-						placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyDown.GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 125);
-						placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyDown.GetComponent<Movment>().incoming = null;
-					}
-					else
-					{
-						placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyDown.GetComponent<Movment>().onMe.GetComponent<Movement2>().attackMarker.SetActive(false);
-						placedOn.GetComponent<Movment>().immediatelyRight.GetComponent<Movment>().immediatelyDown.GetComponent<Movment>().onMe.GetComponent<Movement2>().attackMarker.GetComponent<Attack>().attacking = null;
-					}
-				}
-				#endregion
-			}
-			#endregion
-
-			#region Down
-			if (placedOn.GetComponent<Movment>().immediatelyDown != null)
-			{
-				if (placedOn.GetComponent<Movment>().immediatelyDown.GetComponent<Movment>().onMe == null)
-				{
-					placedOn.GetComponent<Movment>().immediatelyDown.GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 125);
-					placedOn.GetComponent<Movment>().immediatelyDown.GetComponent<Movment>().incoming = null;
-				}
-				else
-				{
-					placedOn.GetComponent<Movment>().immediatelyDown.GetComponent<Movment>().onMe.GetComponent<Movement2>().attackMarker.SetActive(false);
-					placedOn.GetComponent<Movment>().immediatelyDown.GetComponent<Movment>().onMe.GetComponent<Movement2>().attackMarker.GetComponent<Attack>().attacking = null;
-				}
-			}
-			#endregion
-
-			#region Left
-			if (placedOn.GetComponent<Movment>().immediatelyLeft != null)
-			{
-				if (placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().onMe == null)
-				{
-					placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 125);
-					placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().incoming = null;
-				}
-				else
-				{
-					placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().onMe.GetComponent<Movement2>().attackMarker.SetActive(false);
-					placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().onMe.GetComponent<Movement2>().attackMarker.GetComponent<Attack>().attacking = null;
-				}
-
-				if (placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyUp != null)
-				{
-					if (placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().onMe == null)
-					{
-						placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyUp.GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 125);
-						placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().incoming = null;
-					}
-					else
-					{
-						placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().onMe.GetComponent<Movement2>().attackMarker.SetActive(false);
-						placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().onMe.GetComponent<Movement2>().attackMarker.GetComponent<Attack>().attacking = null;
-					}
-				}
-
-				if (placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyDown != null)
-				{
-					if (placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyDown.GetComponent<Movment>().onMe == null)
-					{
-						placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyDown.GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 125);
-						placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyDown.GetComponent<Movment>().incoming = null;
-					}
-					else
-					{
-						placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyDown.GetComponent<Movment>().onMe.GetComponent<Movement2>().attackMarker.SetActive(false);
-						placedOn.GetComponent<Movment>().immediatelyLeft.GetComponent<Movment>().immediatelyDown.GetComponent<Movment>().onMe.GetComponent<Movement2>().attackMarker.GetComponent<Attack>().attacking = null;
-					}
-				}
-			}
-			#endregion
-
-			#region Up
-			if (placedOn.GetComponent<Movment>().immediatelyUp != null)
-			{
-				if (placedOn.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().onMe == null)
-				{
-					placedOn.GetComponent<Movment>().immediatelyUp.GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 125);
-					placedOn.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().incoming = null;
-				}
-				else
-				{
-					placedOn.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().onMe.GetComponent<Movement2>().attackMarker.SetActive(false);
-					placedOn.GetComponent<Movment>().immediatelyUp.GetComponent<Movment>().onMe.GetComponent<Movement2>().attackMarker.GetComponent<Attack>().attacking = null;
-				}
-			}
-			#endregion
+                    else if (arroundMe[i].GetComponent<Movment>().onMe.GetComponent<Movement2>().player != player)
+                    {
+                        arroundMe[i].GetComponent<Movment>().onMe.GetComponent<Movement2>().attackMarker.SetActive(false);
+                        arroundMe[i].GetComponent<Movment>().onMe.GetComponent<Movement2>().attackMarker.GetComponent<Attack>().attacking = null;
+                    }
+                }
+            }
 
 			Main.armyClicked = null;
 			Main.clickedAnArmy = false;
@@ -407,8 +157,9 @@ public class Movement2 : MonoBehaviour {
 	void OnMouseOver()
 	{
 		vida.GetComponent<Text>().text = "Vida: " + life;
-		dano.GetComponent<Text>().text = "Dano: " + damage;
+		dano.GetComponent<Text>().text = "Dano: " + (damage + bonusDmg);
 	}
+
 	void OnMouseExit()
 	{
 		vida.GetComponent<Text>().text = "Vida: ";

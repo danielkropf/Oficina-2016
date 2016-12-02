@@ -36,7 +36,7 @@ public class Attack : MonoBehaviour {
 			if (attacking.name != "Mage(Clone)")
 			{
 				int x = unitAttached.GetComponent<Movement2>().damage ;
-				attacking.GetComponent<Movement2>().life -= unitAttached.GetComponent<Movement2>().damage;
+                attacking.GetComponent<Movement2>().life -= (unitAttached.GetComponent<Movement2>().damage + unitAttached.GetComponent<Movement2>().bonusDmg);
 				e = "P" + player.ToString() + " " + "<color=#810>" +  s[0] + " -" + x.ToString() + " Vida" + "</color>";
 				historico.GetComponent<Text>().text = e + "\n" + historico.GetComponent<Text>().text;
 			}
@@ -57,7 +57,7 @@ public class Attack : MonoBehaviour {
 			}
 
 			s = unitAttached.name.Split('(');
-			unitAttached.GetComponent<Movement2>().life -= attacking.GetComponent<Movement2>().damage;
+			unitAttached.GetComponent<Movement2>().life -= (attacking.GetComponent<Movement2>().damage + attacking.GetComponent<Movement2>().bonusDmg);
 			historico.GetComponent<Text>().text = "P" + playerEnemy.ToString() + "<color=#810>" + " " + s[0] + " -" + attacking.GetComponent<Movement2>().damage + " Vida" + "</color>" + "\n" + historico.GetComponent<Text>().text ;
 
 			attacking.GetComponent<Movement2>().Abilities(unitAttached);
