@@ -76,5 +76,4 @@ public class ChooseMenu : MonoBehaviour {
 		noBtn.GetComponent<Button>().interactable = false;
 	}
 
-
 }

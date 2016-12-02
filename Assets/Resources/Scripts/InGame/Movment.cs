@@ -16,15 +16,6 @@ public class Movment : MonoBehaviour {
 	public GameObject vida;
 	public GameObject dmg;
 
-
-	void Start () {
-	
-	}
-
-	void Update () {
-	
-	}
-
 	void OnMouseUp() {
 		if (incoming != null)
 		{

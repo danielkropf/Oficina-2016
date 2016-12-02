@@ -109,7 +109,6 @@ public class Main : MonoBehaviour {
 
 	public void endTurn() {
 
-
 		if (playerTurn == 1)
 		{
 			playerTurn = 2;

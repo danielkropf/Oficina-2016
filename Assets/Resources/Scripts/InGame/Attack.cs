@@ -7,15 +7,13 @@ public class Attack : MonoBehaviour {
 	public GameObject attacking;
 	public GameObject unitAttached;
     private GameObject historico;
+    public GameObject Troca;
+    public GameObject Trocado;
 	int player;
 	int playerEnemy;
 
 	void Start () {
         historico = GameObject.FindGameObjectWithTag("Historic");
-	}
-	
-	void Update () {
-
 	}
 
 	void OnMouseUp() {
@@ -29,13 +27,28 @@ public class Attack : MonoBehaviour {
 			playerEnemy = 1;
 		}
 
+        if(Troca != null)
+        {
+            int temp = Trocado.GetComponent<Movement2>().life;
+            Trocado.GetComponent<Movement2>().life = Trocado.GetComponent<Movement2>().damage;
+            Trocado.GetComponent<Movement2>().damage = temp;
+
+            GameObject Temp = Troca;
+            Temp.GetComponent<Movement2>().ChangeColor(true);
+            Temp.GetComponent<Movement2>().started = false;
+            Temp.GetComponent<Movement2>().action = false;
+            Temp.GetComponent<Movement2>().movs++;
+
+            Temp = null;
+        }
+
 		if (attacking != null)
 		{
 			string e;
             string[] s = attacking.name.Split('(');
 			if (attacking.name != "Mage(Clone)")
 			{
-				int x = unitAttached.GetComponent<Movement2>().damage ;
+				int x = (unitAttached.GetComponent<Movement2>().damage + unitAttached.GetComponent<Movement2>().bonusDmg);
                 attacking.GetComponent<Movement2>().life -= (unitAttached.GetComponent<Movement2>().damage + unitAttached.GetComponent<Movement2>().bonusDmg);
 				e = "P" + player.ToString() + " " + "<color=#810>" +  s[0] + " -" + x.ToString() + " Vida" + "</color>";
 				historico.GetComponent<Text>().text = e + "\n" + historico.GetComponent<Text>().text;
@@ -58,7 +71,7 @@ public class Attack : MonoBehaviour {
 
 			s = unitAttached.name.Split('(');
 			unitAttached.GetComponent<Movement2>().life -= (attacking.GetComponent<Movement2>().damage + attacking.GetComponent<Movement2>().bonusDmg);
-			historico.GetComponent<Text>().text = "P" + playerEnemy.ToString() + "<color=#810>" + " " + s[0] + " -" + attacking.GetComponent<Movement2>().damage + " Vida" + "</color>" + "\n" + historico.GetComponent<Text>().text ;
+            historico.GetComponent<Text>().text = "P" + playerEnemy.ToString() + "<color=#810>" + " " + s[0] + " -" + (attacking.GetComponent<Movement2>().damage + attacking.GetComponent<Movement2>().bonusDmg) + " Vida" + "</color>" + "\n" + historico.GetComponent<Text>().text;
 
 			attacking.GetComponent<Movement2>().Abilities(unitAttached);
 			if (unitAttached.GetComponent<Movement2>().life <= 0)

@@ -86,7 +86,6 @@ public class Movement2 : MonoBehaviour {
 
 	}
 
-
 	public void ChangeColor(bool b)
 	{
 		
@@ -106,7 +105,19 @@ public class Movement2 : MonoBehaviour {
                     else if (arroundMe[i].GetComponent<Movment>().onMe.GetComponent<Movement2>().player != player)
                     {
                         arroundMe[i].GetComponent<Movment>().onMe.GetComponent<Movement2>().attackMarker.SetActive(true);
+                        arroundMe[i].GetComponent<Movment>().onMe.GetComponent<Movement2>().attackMarker.GetComponent<SpriteRenderer>().color = new Color32(255, 0, 0, 132);
                         arroundMe[i].GetComponent<Movment>().onMe.GetComponent<Movement2>().attackMarker.GetComponent<Attack>().attacking = this.gameObject;
+                    }
+
+                    else if (arroundMe[i].GetComponent<Movment>().onMe.GetComponent<Movement2>().player == player)
+                    {
+                        if (PlayerPrefs.GetInt("P" + player) == 3 && king)
+                        {
+                            arroundMe[i].GetComponent<Movment>().onMe.GetComponent<Movement2>().attackMarker.SetActive(true);
+                            arroundMe[i].GetComponent<Movment>().onMe.GetComponent<Movement2>().attackMarker.GetComponent<SpriteRenderer>().color = new Color32(255, 255, 0, 132);
+                            arroundMe[i].GetComponent<Movment>().onMe.GetComponent<Movement2>().attackMarker.GetComponent<Attack>().Troca = this.gameObject;
+                            arroundMe[i].GetComponent<Movment>().onMe.GetComponent<Movement2>().attackMarker.GetComponent<Attack>().Trocado = arroundMe[i].GetComponent<Movment>().onMe;
+                        }
                     }
                 }
             }
@@ -133,6 +144,15 @@ public class Movement2 : MonoBehaviour {
                     {
                         arroundMe[i].GetComponent<Movment>().onMe.GetComponent<Movement2>().attackMarker.SetActive(false);
                         arroundMe[i].GetComponent<Movment>().onMe.GetComponent<Movement2>().attackMarker.GetComponent<Attack>().attacking = null;
+                    }
+
+                    else if (arroundMe[i].GetComponent<Movment>().onMe.GetComponent<Movement2>().player == player)
+                    {
+                        if (PlayerPrefs.GetInt("P" + player) == 3 && king)
+                        {
+                            arroundMe[i].GetComponent<Movment>().onMe.GetComponent<Movement2>().attackMarker.SetActive(false);
+                            arroundMe[i].GetComponent<Movment>().onMe.GetComponent<Movement2>().attackMarker.GetComponent<Attack>().Troca = null;
+                        }
                     }
                 }
             }
